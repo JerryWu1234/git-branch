@@ -1,3 +1,2 @@
-#!/usr/bin/env zx
-
-await $`ls -l`
+#!/usr/bin/env node
+import '../dist/index.mjs'

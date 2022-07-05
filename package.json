@@ -1,6 +1,6 @@
 {
   "name": "bt-git",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@7.1.1",
   "description": "build bundle of vue2 in esbuild",
   "keywords": [
@@ -8,7 +8,7 @@
     "git-branch"
   ],
   "bin": {
-    "git-branch": "bin/index.mjs"
+    "bt-git": "bin/index.mjs"
   },
   "license": "MIT",
   "exports": {
