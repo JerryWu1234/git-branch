@@ -7,6 +7,7 @@ specifiers:
   '@types/inquirer': ^8.2.1
   '@types/node': ^17.0.34
   bumpp: ^7.1.1
+  cac: ^6.7.12
   chalk: ^5.0.1
   cypress: ^10.0.3
   debug: ^4.3.4
@@ -30,6 +31,7 @@ dependencies:
   '@types/debug': 4.1.7
   '@types/hash-sum': 1.0.0
   '@types/inquirer': 8.2.1
+  cac: 6.7.12
   chalk: 5.0.1
   debug: 4.3.4
   fsxx: 0.1.0
@@ -851,7 +853,6 @@ packages:
   /cac/6.7.12:
     resolution: {integrity: sha512-rM7E2ygtMkJqD9c7WnFU6fruFcN3xe4FM5yUmgxhZzIKJk4uHl9U/fhwdajGFQbQuv43FAUo1Fe8gX/oIKDeSA==}
     engines: {node: '>=8'}
-    dev: true
 
   /cacheable-request/6.1.0:
     resolution: {integrity: sha512-Oj3cAGPCqOZX7Rz64Uny2GYAZNliQSqfbePrgAQ1wKAihYmCUnraBtJtKcGR4xz7wF+LoJC+ssFZvv5BgF9Igg==}

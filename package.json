@@ -71,12 +71,11 @@
   "dependencies": {
     "@types/debug": "^4.1.7",
     "@types/hash-sum": "^1.0.0",
-    "@types/inquirer": "^8.2.1",
+    "cac": "^6.7.12",
     "chalk": "^5.0.1",
     "debug": "^4.3.4",
     "fsxx": "^0.1.0",
     "hash-sum": "^2.0.0",
-    "inquirer": "^9.0.0",
     "ora": "^6.1.2",
     "simple-git": "^3.10.0",
     "zx": "^7.0.7"
