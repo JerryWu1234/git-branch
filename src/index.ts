@@ -65,17 +65,22 @@ async function commitCode(jira: string, comment: string, marjor: string, realnam
     spinner.stop()
     await $`git commit -m '${jira} # ${comment}'`
     debug.log(chalk.green(`current commit jiraId: ${jira} # comment: ${comment}`))
-    await $`git merge origin ${marjor}`.catch((e) => {
+    await $`git merge origin/${marjor}`.catch((e) => {
       debug.log(chalk.red((e as ProcessOutput).stderr))
     })
+    debug.log(chalk.green(`current branch:${realname},is pulling code from ${marjor}`))
+    await $`git pull`
+    await sleep(1000)
     if (!await inspectFile())
       await $`exit 1`
 
+    debug.log(chalk.green(`current branch:${realname},is pushing code`))
     await $`git push origin ${realname}`
+    await sleep(1000)
   }
   catch (e) {
     if ((e as ProcessOutput).stdout.includes('nothing to commit, working tree clean')) {
-      await $`git merge origin ${marjor}`.catch((e) => {
+      await $`git merge origin/${marjor}`.catch((e) => {
         debug.log(chalk.red((e as ProcessOutput).stderr))
       })
     }
