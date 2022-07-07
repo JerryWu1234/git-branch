@@ -34,7 +34,7 @@ export async function main() {
   currentBranch = await getCurrentBranch()
   const realname = getRealName(currentBranch.stdout) || ''
 
-  if (realname.includes('|')) {
+  if (realname.includes('bt')) {
     debug.log(chalk.red(`current ${realname} branch is not your development  branch`))
     await $`exit 1`
   }
@@ -49,9 +49,9 @@ export async function main() {
   const comment = await question('please input comment:')
 
   await commitCode(jira, comment, marjorBranch, realname)
-  await checkoutBranch(`${hash}|${mergedBranch}`)
+  await checkoutBranch(`${hash}bt${mergedBranch}`)
   await mergeCode(realname)
-  await pushCode(`${hash}|${mergedBranch}`, url)
+  await pushCode(`${hash}bt${mergedBranch}`, url)
 }
 
 async function commitCode(jira: string, comment: string, marjor: string, realname: string) {
