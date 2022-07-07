@@ -34,7 +34,7 @@ export async function main() {
   currentBranch = await getCurrentBranch()
   const realname = getRealName(currentBranch.stdout) || ''
 
-  if (realname.includes('#')) {
+  if (realname.includes('|')) {
     debug.log(chalk.red(`current ${realname} branch is not your development  branch`))
     await $`exit 1`
   }
@@ -49,9 +49,9 @@ export async function main() {
   const comment = await question('please input comment:')
 
   await commitCode(jira, comment, marjorBranch, realname)
-  await checkoutBranch(`${hash}#${mergedBranch}`)
+  await checkoutBranch(`${hash}|${mergedBranch}`)
   await mergeCode(realname)
-  await pushCode(`${hash}#${mergedBranch}`, url)
+  await pushCode(`${hash}|${mergedBranch}`, url)
 }
 
 async function commitCode(jira: string, comment: string, marjor: string, realname: string) {
@@ -65,13 +65,13 @@ async function commitCode(jira: string, comment: string, marjor: string, realnam
     const spinner = loader('committing code')
     await sleep(1000)
     spinner.stop()
-    await $`git commit -m '${jira} # ${comment}'`
+    await $`git commit -m "${jira} # ${comment}"`
     debug.log(chalk.green(`current commit jiraId: ${jira} # comment: ${comment}`))
     await $`git merge origin/${marjor}`.catch((e) => {
       debug.log(chalk.red((e as ProcessOutput).stderr))
     })
     debug.log(chalk.green(`current branch:${realname},is pulling code from ${marjor}`))
-    await $`git pull`
+    await $`git pull origin ${realname}`
     await sleep(1000)
     if (!await inspectFile())
       await $`exit 1`

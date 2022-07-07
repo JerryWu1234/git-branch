@@ -5,7 +5,7 @@
 # install
 
 ```bash
-pnpm install git-branch -g
+pnpm install bt-git -g
 
 ```
 
