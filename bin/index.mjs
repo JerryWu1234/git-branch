@@ -1,3 +1,2 @@
 #!/usr/bin/env node
-import { main } from '../dist/index.mjs'
-main()
+import '../dist/index.mjs'
