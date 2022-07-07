@@ -1,6 +1,6 @@
 {
   "name": "bt-git",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "packageManager": "pnpm@7.1.1",
   "description": "build bundle of vue2 in esbuild",
   "keywords": [
@@ -20,7 +20,8 @@
   },
   "files": [
     "dist",
-    "bin"
+    "bin",
+    "package.json"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",

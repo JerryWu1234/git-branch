@@ -4,12 +4,12 @@ import { $, question, sleep } from 'zx'
 import chalk from 'chalk'
 import cac from 'cac'
 import { createHash, getRealName, loader } from './utils'
+
 $.verbose = false
 const cli = cac('bt-git')
 const hash = createHash()
 async function prompt() {
-  cli.command('input env and branch name')
-    .option('-m, --major', 'plaese input major branch name')
+  cli.command(' bt-git \n\n -m, --major, plaese input major branch name \n -t, --target plaese input merged target name \n -u, --url plaese input project url').option('-m, --major', 'plaese input major branch name')
     .option('-t, --target', 'plaese input merged target name')
     .option('-u, --url', 'plaese input project url')
   cli.help()
@@ -23,12 +23,14 @@ async function getCurrentBranch() {
   return await $`git branch`
 }
 
-async function main() {
+export async function main() {
   const parsed = await prompt()
   const marjorBranch = parsed.options.major || parsed.options.m
   const mergedBranch = parsed.options.t || parsed.options.target
-  const url = parsed.options.url || parsed.options.u
+  const url = parsed.options.u || parsed.options.url
 
+  if (!marjorBranch && !mergedBranch)
+    return
   currentBranch = await getCurrentBranch()
   const realname = getRealName(currentBranch.stdout) || ''
 
