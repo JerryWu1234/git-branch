@@ -24,7 +24,7 @@ bt-git -m master -t test
 * type: string
 * required: true
 
-主分支，类似master的主分支
+主分支，例如:master
 
 
 #### -t or -target
