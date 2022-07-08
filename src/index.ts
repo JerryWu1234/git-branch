@@ -29,12 +29,15 @@ export async function main() {
   const mergedBranch = parsed.options.t || parsed.options.target
   const url = parsed.options.u || parsed.options.url
 
-  if (!marjorBranch && !mergedBranch)
+  if (!marjorBranch) {
+    debug.log(chalk.red('arg "-m" parameter is not empty'))
     return
+  }
+
   currentBranch = await getCurrentBranch()
   const realname = getRealName(currentBranch.stdout) || ''
 
-  if (realname.includes('bt')) {
+  if (realname.startsWith('BT_GIT')) {
     debug.log(chalk.red(`current ${realname} branch is not your development  branch`))
     await $`exit 1`
   }
@@ -49,9 +52,11 @@ export async function main() {
   const comment = await question('please input comment:')
 
   await commitCode(jira, comment, marjorBranch, realname)
-  await checkoutBranch(`${hash}bt${mergedBranch}`)
+  if (!mergedBranch)
+    return
+  await checkoutBranch(`BT_GIT-${hash}-${mergedBranch}`)
   await mergeCode(realname)
-  await pushCode(`${hash}bt${mergedBranch}`, url)
+  await pushCode(`BT_GIT-${hash}-${mergedBranch}`, url)
 }
 
 async function commitCode(jira: string, comment: string, marjor: string, realname: string) {
